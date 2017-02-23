@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Node.js HTTP and WebSockets servers</title>
+</head>
+
+<body>
+  <div class="content">
+    <div>
+      <input type="text" id="message" />
+    </div>
+    <br/>
+    <div>
+      <button onclick="connect()" style="width: 100px;">Connect</button>
+      <button onclick="sendMessage()" style="width: 100px;">Send Data</button>
+    </div>
+    <br/>
+    <div>
+      <textarea id="logTextArea" style="width: 95%; height:100px;" disabled></textarea>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var ws;
+    var log = document.getElementById("logTextArea");
+    function connect() {
+
+      //Open the connection to the server
+      var endpoint = "ws://localhost:8889/";
+      ws = new WebSocket(endpoint);
+
+      ws.onopen = function (ev) {
+        log.textContent += "Connection established: " + (ws.readyState === ws.OPEN) + "\n";
+      }
+
+      //Listen for responses from the server
+      ws.onmessage = function (ev) {
+        log.textContent += "\nResponse from server: ";
+        log.textContent += ev.data;
+      };
+    }
+
+    function sendMessage() {
+      var msg = document.getElementById("message").value;
+      var data = {
+        source: 'ClientWebSocket Application (client)',
+        url: document.URL,
+        message: msg
+      }
+
+      ws.send(JSON.stringify(data));
+    }
+
+  </script>
+  <style>
+    .content {
+      border: 2px solid black;
+      border-radius: 5px;
+      width: 450px;
+      margin: 20px;
+      padding: 20px;
+    }
+  </style>
+</body>
+
+</html>

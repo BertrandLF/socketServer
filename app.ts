@@ -1,6 +1,6 @@
+import { WsServer } from './servers/wsServer';
 import { HttpServer } from './servers/httpServer';
-// npm modules
-const ws = require('ws');
+
 // ports
 const httpPort = 8888;
 const wsPort = 8889;
@@ -8,3 +8,5 @@ const wsPort = 8889;
 const httpServer = new HttpServer();
 httpServer.start(httpPort);
 
+const wsServer = new WsServer();
+wsServer.start(wsPort);

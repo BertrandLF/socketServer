@@ -20,7 +20,7 @@ export class HttpServer {
 
   start(port) {
     // create http server
-    console.log('starting server');
     http.createServer(this.onHttpRequest).listen(port);
+    console.log('server started');
   }
 }
