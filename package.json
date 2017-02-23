@@ -1,0 +1,23 @@
+{
+  "name": "socket-server",
+  "version": "1.0.0",
+  "description": "Mock socket server",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BertrandLF/socketServer.git"
+  },
+  "keywords": [
+    "socket",
+    "server"
+  ],
+  "author": "bertrandlf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BertrandLF/socketServer/issues"
+  },
+  "homepage": "https://github.com/BertrandLF/socketServer#readme"
+}
