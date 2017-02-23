@@ -1,18 +1,18 @@
 // npm modules
-var http = require('http');
-var url = require('url');
+const http = require('http');
+const url = require('url');
 
 // ports
-var httpPort = 8888;
+const httpPort = 8888;
 
-function onHttpRequest(request, response){
+function onHttpRequest(request, response) {
   const requestUrl = url.parse(request.url);
   console.log('pathname:', requestUrl.pathname, 'query:', requestUrl.query);
 
-  const text = '<html><head><body><ul>'
-        + "<li>Request for '" + requestUrl.pathname + "' received.</li>" 
-        + "<li>Query for '" + requestUrl.query + "' received.</li>"
-        + "</ul></head><body></html>";
+  const text = `<html><head/><body>
+         <div>Request ${requestUrl.pathname} received.</div>
+         <div>Query ${requestUrl.query} received.</div>
+         </body></html>`;
 
   response.writeHead(200, {
     'Content-Type': 'text/html',
