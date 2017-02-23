@@ -1,29 +1,10 @@
+import { HttpServer } from './servers/httpServer';
 // npm modules
-const http = require('http');
-const url = require('url');
-
+const ws = require('ws');
 // ports
 const httpPort = 8888;
+const wsPort = 8889;
 
-function onHttpRequest(request, response) {
-  const requestUrl = url.parse(request.url);
-  console.log('pathname:', requestUrl.pathname, 'query:', requestUrl.query);
+const httpServer = new HttpServer();
+httpServer.start(httpPort);
 
-  const text = `<html><head/><body>
-         <div>Request ${requestUrl.pathname} received.</div>
-         <div>Query ${requestUrl.query} received.</div>
-         </body></html>`;
-
-  response.writeHead(200, {
-    'Content-Type': 'text/html',
-    'Content-Length': text.length
-  });
-
-  response.write(text);
-  response.end();
-
-}
-
-// create http server
-console.log('starting server');
-http.createServer(onHttpRequest).listen(httpPort);
